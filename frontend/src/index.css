@@ -1,0 +1,126 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* Global styles */
+body {
+  margin: 0;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #f8fafc;
+}
+
+code {
+  font-family: 'Fira Code', monospace;
+}
+
+/* Custom button styles */
+.btn {
+  @apply px-4 py-2 rounded-lg font-medium transition-colors duration-200;
+}
+
+.btn-primary {
+  @apply bg-primary-600 text-white hover:bg-primary-700;
+}
+
+.btn-secondary {
+  @apply bg-gray-200 text-gray-800 hover:bg-gray-300;
+}
+
+.btn-danger {
+  @apply bg-danger-600 text-white hover:bg-danger-700;
+}
+
+.btn-success {
+  @apply bg-success-600 text-white hover:bg-success-700;
+}
+
+/* Card styles */
+.card {
+  @apply bg-white rounded-lg shadow p-4;
+}
+
+.card-hover {
+  @apply card hover:shadow-lg transition-shadow duration-200;
+}
+
+/* Badge styles */
+.badge {
+  @apply px-3 py-1 rounded-full text-sm font-medium;
+}
+
+.badge-critical {
+  @apply bg-danger-100 text-danger-700;
+}
+
+.badge-high {
+  @apply bg-warning-100 text-warning-700;
+}
+
+.badge-medium {
+  @apply bg-blue-100 text-blue-700;
+}
+
+.badge-low {
+  @apply bg-success-100 text-success-700;
+}
+
+/* Loading spinner */
+.spinner {
+  @apply inline-block animate-spin;
+}
+
+.spinner-sm {
+  @apply w-4 h-4;
+}
+
+.spinner-md {
+  @apply w-6 h-6;
+}
+
+.spinner-lg {
+  @apply w-8 h-8;
+}
+
+/* Alert styles */
+.alert {
+  @apply p-4 rounded-lg flex items-start gap-3;
+}
+
+.alert-info {
+  @apply bg-blue-100 text-blue-700;
+}
+
+.alert-success {
+  @apply bg-success-100 text-success-700;
+}
+
+.alert-warning {
+  @apply bg-warning-100 text-warning-700;
+}
+
+.alert-error {
+  @apply bg-danger-100 text-danger-700;
+}

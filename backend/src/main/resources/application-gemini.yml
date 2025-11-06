@@ -1,0 +1,15 @@
+llm:
+  provider: gemini
+  api:
+    key: ${GEMINI_API_KEY:}
+  model:
+    name: gemini-1.5-pro
+  temperature: 0.0
+  max-tokens: 2000
+  gemini:
+    model: gemini-1.5-pro
+
+logging:
+  level:
+    com.security: DEBUG
+    dev.langchain4j: DEBUG

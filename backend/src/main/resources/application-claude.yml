@@ -1,0 +1,15 @@
+llm:
+  provider: claude
+  api:
+    key: ${ANTHROPIC_API_KEY:}
+  model:
+    name: claude-3-5-sonnet-20241022
+  temperature: 0.0
+  max-tokens: 2000
+  claude:
+    model: claude-3-5-sonnet-20241022
+
+logging:
+  level:
+    com.security: DEBUG
+    dev.langchain4j: DEBUG

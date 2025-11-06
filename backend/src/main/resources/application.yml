@@ -1,0 +1,163 @@
+spring:
+  application:
+    name: security-ai-platform
+
+  datasource:
+    # Use H2 for development, switch to PostgreSQL for production
+    url: jdbc:h2:mem:testdb
+    username: sa
+    password:
+    driver-class-name: org.h2.Driver
+
+    # PostgreSQL configuration (uncomment for production)
+    # url: jdbc:postgresql://localhost:5432/security_db
+    # username: admin
+    # password: ${DB_PASSWORD:your_password}
+    # driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: validate  # Validate existing schema against entities
+    show-sql: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.H2Dialect
+        # dialect: org.hibernate.dialect.PostgreSQLDialect  # For PostgreSQL
+        format_sql: true
+        use_sql_comments: true
+
+  sql:
+    init:
+      mode: always  # Initialize database from schema.sql
+      continue-on-error: false
+
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+
+# LLM Configuration
+llm:
+  provider: gemini  # Options: gemini, claude, openai, ollama
+  api:
+    key: ${GEMINI_API_KEY:}
+  model:
+    name: gemini-1.5-pro
+  temperature: 0.0
+  max-tokens: 2000
+
+  # Provider-specific models
+  gemini:
+    model: gemini-2.0-flash
+  claude:
+    model: claude-3-5-sonnet-20241022
+  openai:
+    model: gpt-4
+  ollama:
+    url: http://localhost:11434
+    model: neural-chat
+
+# Qdrant Vector Store Configuration
+qdrant:
+  host: localhost
+  port: 6334
+  collection-name: security-knowledge
+  collection-size: 384  # AllMiniLmL6V2 embedding size
+  recreate-collection: false
+
+# CVE Configuration
+cve:
+  nvd:
+    api-url: https://services.nvd.nist.gov/rest/json
+    api-key: ${NVD_API_KEY:}
+  update:
+    # Cron schedule: runs at 2 AM daily
+    schedule: "0 0 2 * * ?"
+    enabled: true
+  years-to-index: 2
+  batch-size: 100
+
+# Security Scan Configuration
+security:
+  scan:
+    # Allowed IP ranges for scanning
+    allowed-ranges:
+      - 192.168.0.0/16
+      - 10.0.0.0/8
+      - 172.16.0.0/12
+      - 127.0.0.1/32
+
+    max-concurrent: 5
+    timeout-minutes: 30
+
+    # Nmap configuration
+    nmap:
+      path: /usr/bin/nmap
+      # For Windows: path: C:\\Program Files (x86)\\Nmap\\nmap.exe
+
+  # VirusTotal API Configuration
+  virustotal:
+    api-key: ${VIRUSTOTAL_API_KEY:}
+    api-url: https://www.virustotal.com/api/v3
+    rate-limit: 4  # requests per minute
+    cache-duration-hours: 24
+
+  # File scan configuration
+  file-scan:
+    max-file-size-mb: 100
+    allowed-extensions:
+      - exe
+      - dll
+      - msi
+      - zip
+      - jar
+      - py
+      - sh
+      - bash
+
+# Server Configuration
+server:
+  port: 8080
+  servlet:
+    context-path: /
+
+  # Tomcat configuration
+  tomcat:
+    max-threads: 200
+    min-spare-threads: 10
+
+# Logging Configuration
+logging:
+  level:
+    root: INFO
+    com.security: DEBUG
+    dev.langchain4j: DEBUG
+    org.springframework.web: DEBUG
+    org.springframework.security: DEBUG
+    org.hibernate: WARN
+
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} - %msg%n"
+    file: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
+
+  file:
+    name: logs/security-ai-platform.log
+    max-size: 10MB
+    max-history: 7
+
+# Management Endpoints
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics
+  endpoint:
+    health:
+      show-details: when-authorized
+
+# Application-specific properties
+app:
+  name: Security AI Platform
+  version: 1.0.0
+  description: Comprehensive Security Testing and Network Analysis with AI Assistance
+  support-email: support@example.com

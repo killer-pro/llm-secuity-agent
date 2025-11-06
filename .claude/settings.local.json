@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(cat:*)",
+      "Bash(set GEMINI_API_KEY=AIzaSyC8pTTtvq0dVMXIOIAMCR3Xu-H83gI1x8o)",
+      "Bash(mvn spring-boot:run:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

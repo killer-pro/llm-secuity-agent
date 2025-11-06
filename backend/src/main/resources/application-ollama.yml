@@ -1,0 +1,14 @@
+llm:
+  provider: ollama
+  model:
+    name: neural-chat
+  temperature: 0.0
+  max-tokens: 2000
+  ollama:
+    url: http://localhost:11434
+    model: neural-chat
+
+logging:
+  level:
+    com.security: DEBUG
+    dev.langchain4j: DEBUG

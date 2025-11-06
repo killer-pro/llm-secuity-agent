@@ -1,0 +1,106 @@
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.DS_Store
+*.iml
+*.iws
+*.ipr
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+
+# Backend
+backend/target/
+backend/.mvn/
+backend/*.jar
+backend/*.war
+backend/logs/
+backend/.gradle/
+backend/build/
+
+# Frontend
+frontend/node_modules/
+frontend/dist/
+frontend/build/
+frontend/.next
+frontend/out/
+frontend/.parcel-cache
+frontend/coverage/
+
+# Electron
+frontend/dist/electron/
+frontend/*.dmg
+frontend/*.exe
+frontend/*.apk
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+
+# Dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# Testing
+coverage/
+.nyc_output/
+junit.xml
+
+# Misc
+.cache/
+*.pem
+*.csr
+*.cert
+*.key
+
+# OS
+Thumbs.db
+.DS_Store
+
+# Docker
+.dockerignore
+docker/postgres_data/
+docker/qdrant_storage/
+docker/ollama_data/
+
+# Database
+*.db
+*.sqlite
+*.sqlite3
+pg_data/
+
+# Backup
+*.bak
+*.backup
+~*
+*.tmp
+
+# Security (don't commit keys or secrets)
+**/secrets.*
+**/private.*
+**/.auth
+**/apikeys.json
+openssl/
+certs/
+
+# Lock files (optional, for reproducibility)
+# Uncomment if you want to track lock files
+# package-lock.json
+# yarn.lock
+# pom.lock

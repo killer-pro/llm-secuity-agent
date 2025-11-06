@@ -1,0 +1,47 @@
+spring:
+  application:
+    name: security-ai-platform
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/security_db
+    username: admin
+    password: postgres
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    show-sql: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+
+  sql:
+    init:
+      mode: always
+      continue-on-error: false
+
+# LLM Configuration with Gemini API Key
+llm:
+  provider: gemini
+  api:
+    key: AIzaSyC8pTTtvq0dVMXIOIAMCR3Xu-H83gI1x8o
+  model:
+    name: gemini-2.0-flash
+  temperature: 0.0
+  max-tokens: 2000
+  gemini:
+    model: gemini-2.0-flash
+
+# CVE Configuration with NVD API Key
+cve:
+  nvd:
+    api-url: https://services.nvd.nist.gov/rest/json
+    api-key: 9be67211-6db1-456c-ba55-2f1376ad0453
+  update:
+    schedule: "0 0 2 * * ?"
+    enabled: false
+  years-to-index: 2
+  batch-size: 100
