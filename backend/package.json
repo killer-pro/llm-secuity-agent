@@ -1,0 +1,26 @@
+{
+  "name": "security-ai-platform-backend",
+  "version": "1.0.0",
+  "description": "Security AI Platform - Backend (Spring Boot + Maven)",
+  "scripts": {
+    "dev": "mvn clean spring-boot:run -Dspring-boot.run.arguments=\"--spring.profiles.active=local\"",
+    "start": "mvn spring-boot:run -Dspring-boot.run.arguments=\"--spring.profiles.active=local\"",
+    "build": "mvn clean package",
+    "test": "mvn test",
+    "install-deps": "mvn clean install",
+    "db:drop": "echo 'Execute: dropdb -U admin security_db'",
+    "db:create": "echo 'Execute: createdb -U admin security_db'"
+  },
+  "keywords": [
+    "security",
+    "ai",
+    "spring-boot",
+    "java"
+  ],
+  "author": "Security AI Team",
+  "license": "MIT",
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "devDependencies": {}
+}
