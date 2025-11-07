@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <!-- Spring Boot default configuration import -->
+    <include resource="org/springframework/boot/logging/logback/defaults.xml"/>
+
+    <!-- Define properties -->
+    <property name="LOG_FILE" value="${LOG_FILE:-${LOG_PATH:-${LOG_TEMP:-${java.io.tmpdir:-/tmp}}/}spring.log}"/>
+    <property name="LOG_PATTERN" value="%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36}:%line - %msg%n"/>
+    <property name="CONSOLE_LOG_PATTERN" value="%d{HH:mm:ss.SSS} [%-5level] %logger{0}:%line - %msg%n"/>
+
+    <!-- Console appender for IntelliJ -->
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>${CONSOLE_LOG_PATTERN}</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+
+    <!-- File appender -->
+    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>logs/security-ai-platform.log</file>
+        <encoder>
+            <pattern>${LOG_PATTERN}</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <fileNamePattern>logs/security-ai-platform.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <maxFileSize>10MB</maxFileSize>
+            <maxHistory>7</maxHistory>
+            <totalSizeCap>100MB</totalSizeCap>
+        </rollingPolicy>
+    </appender>
+
+    <!-- Async appender for better performance -->
+    <appender name="ASYNC_FILE" class="ch.qos.logback.classic.AsyncAppender">
+        <queueSize>512</queueSize>
+        <discardingThreshold>0</discardingThreshold>
+        <appender-ref ref="FILE"/>
+    </appender>
+
+    <!-- Logger configurations -->
+
+    <!-- Security Agent logging -->
+    <logger name="com.security.service.ai" level="DEBUG"/>
+    <logger name="com.security.service.security" level="DEBUG"/>
+    <logger name="com.security.service.vulnerability" level="INFO"/>
+    <logger name="com.security.service.vector" level="INFO"/>
+    <logger name="com.security.controller" level="DEBUG"/>
+
+    <!-- Reduce verbose library logging -->
+    <logger name="org.springframework.boot" level="WARN"/>
+    <logger name="org.springframework.boot.autoconfigure" level="WARN"/>
+    <logger name="org.springframework.boot.actuate" level="WARN"/>
+    <logger name="org.springframework.web" level="WARN"/>
+    <logger name="org.springframework.security" level="WARN"/>
+    <logger name="org.springframework.data" level="WARN"/>
+    <logger name="org.springframework.orm.jpa" level="WARN"/>
+
+    <!-- Database logging -->
+    <logger name="org.hibernate" level="ERROR"/>
+    <logger name="org.hibernate.engine" level="WARN"/>
+    <logger name="org.hibernate.engine.transaction.internal.TransactionImpl" level="ERROR"/>
+    <logger name="org.hibernate.loader.Loader" level="ERROR"/>
+    <logger name="org.postgresql.jdbc" level="ERROR"/>
+    <logger name="org.postgresql.util" level="ERROR"/>
+    <logger name="org.postgresql.core" level="ERROR"/>
+
+    <!-- LangChain4j logging -->
+    <logger name="dev.langchain4j" level="WARN"/>
+
+    <!-- Qdrant logging -->
+    <logger name="io.qdrant" level="INFO"/>
+
+    <!-- Apache Commons -->
+    <logger name="org.apache" level="WARN"/>
+    <logger name="org.apache.tomcat" level="WARN"/>
+
+    <!-- Root logger -->
+    <root level="WARN">
+        <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="ASYNC_FILE"/>
+    </root>
+
+    <!-- Spring profiles -->
+    <springProfile name="local">
+        <logger name="com.security" level="DEBUG"/>
+        <logger name="com.security.service" level="DEBUG"/>
+    </springProfile>
+
+    <springProfile name="prod">
+        <logger name="com.security" level="INFO"/>
+        <logger name="com.security.service" level="INFO"/>
+    </springProfile>
+
+</configuration>
