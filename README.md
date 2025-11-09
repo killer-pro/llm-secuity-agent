@@ -295,9 +295,8 @@ Contributions are welcome! Please read our contributing guidelines.
 ## 📧 Support
 
 For issues and questions:
-- GitHub Issues: [Report bugs](https://github.com/yourrepo/issues)
-- Email: support@example.com
-
+- GitHub Issues: [Report bugs](https://github.com/killer-pro/issues)
+- Email: mouhamadoud@ept.sn
 ## ⚠️ Disclaimer
 
 This tool is for authorized security testing only. Ensure you have proper authorization before scanning any systems. Unauthorized access to computer systems is illegal.
